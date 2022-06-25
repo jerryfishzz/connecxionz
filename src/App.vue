@@ -12,12 +12,8 @@
           </v-list-item-icon>
           <v-list-item-content>{{ item.title }}</v-list-item-content>
         </v-list-item>
-        <v-list-item ripple>
-          <v-list-item-icon>
-            <v-icon>mdi-login</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>Login</v-list-item-content>
-        </v-list-item>
+
+        <LoginPrompt :isDrawer="true" />
       </v-list>
     </v-navigation-drawer>
 

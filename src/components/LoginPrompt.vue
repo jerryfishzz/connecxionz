@@ -1,10 +1,17 @@
 <template>
   <v-dialog v-model="dialog" width="500">
     <template v-slot:activator="{ on, attrs }">
-      <v-btn text v-bind="attrs" v-on="on" v-blur>
+      <v-btn text v-bind="attrs" v-on="on" v-blur v-if="!isDrawer">
         <v-icon left color="darken-2">mdi-login</v-icon>
         Login
       </v-btn>
+
+      <v-list-item ripple v-bind="attrs" v-on="on" v-blur v-if="isDrawer">
+        <v-list-item-icon>
+          <v-icon>mdi-login</v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>Login</v-list-item-content>
+      </v-list-item>
     </template>
 
     <v-card>
@@ -40,6 +47,11 @@ export default {
     return {
       dialog: false,
     }
+  },
+  props: {
+    isDrawer: {
+      type: Boolean,
+    },
   },
 }
 </script>
