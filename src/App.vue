@@ -1,26 +1,42 @@
 <template>
-  <v-app id="inspire">
-    <v-app-bar app color="white" flat>
-      <v-tabs centered class="ml-n9" color="grey darken-1">
-        <v-tab v-for="link in links" :key="link">
-          {{ link }}
-        </v-tab>
-      </v-tabs>
-    </v-app-bar>
+  <v-app>
+    <!-- <v-navigation-drawer v-model="sidebar" app>
+      <v-list>
+        <v-list-tile
+          v-for="item in menuItems"
+          :key="item.title"
+          :to="item.path"
+        >
+          <v-list-tile-action>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>{{ item.title }}</v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+    </v-navigation-drawer> -->
 
-    <v-main class="grey lighten-3">
-      <v-container>
-        <v-row>
-          <v-col cols="12">
-            <v-sheet min-height="70vh" rounded="lg">
-              <!--  -->
-            </v-sheet>
-          </v-col>
-        </v-row>
-      </v-container>
+    <!--  class shrink is to control the bar height steady -->
+    <v-toolbar class="shrink">
+      <!-- <span class="hidden-sm-and-up">
+        <v-toolbar-side-icon @click="sidebar = !sidebar"> </v-toolbar-side-icon>
+      </span> -->
 
-      <!-- <router-view /> -->
-    </v-main>
+      <v-toolbar-title>
+        {{ appTitle }}
+      </v-toolbar-title>
+
+      <v-spacer></v-spacer>
+      <v-toolbar-items class="hidden-xs-only">
+        <v-btn text v-for="item in menuItems" :key="item.title" :to="item.path">
+          <v-icon left color="darken-2">{{ item.icon }}</v-icon>
+          {{ item.title }}
+        </v-btn>
+      </v-toolbar-items>
+    </v-toolbar>
+
+    <v-content>
+      <router-view></router-view>
+    </v-content>
   </v-app>
 </template>
 
@@ -31,7 +47,13 @@ export default Vue.extend({
   name: 'App',
 
   data: () => ({
-    links: ['Home', 'Login', 'Map'],
+    appTitle: 'Connecxionz Task',
+    sidebar: false,
+    menuItems: [
+      { title: 'Home', path: '/', icon: 'mdi-home' },
+      { title: 'Map', path: '/map', icon: 'mdi-map' },
+      { title: 'Login', path: '/about', icon: 'mdi-login' },
+    ],
   }),
 })
 </script>
