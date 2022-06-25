@@ -1,25 +1,31 @@
 <template>
   <v-app>
-    <!-- <v-navigation-drawer v-model="sidebar" app>
+    <v-navigation-drawer v-model="sidebar" absolute>
       <v-list>
-        <v-list-tile
+        <v-list-item
           v-for="item in menuItems"
           :key="item.title"
           :to="item.path"
         >
-          <v-list-tile-action>
+          <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>{{ item.title }}</v-list-tile-content>
-        </v-list-tile>
+          </v-list-item-icon>
+          <v-list-item-content>{{ item.title }}</v-list-item-content>
+        </v-list-item>
+        <v-list-item ripple>
+          <v-list-item-icon>
+            <v-icon>mdi-login</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>Login</v-list-item-content>
+        </v-list-item>
       </v-list>
-    </v-navigation-drawer> -->
+    </v-navigation-drawer>
 
     <!--  class shrink is to control the bar height steady -->
     <v-toolbar class="shrink">
-      <!-- <span class="hidden-sm-and-up">
-        <v-toolbar-side-icon @click="sidebar = !sidebar"> </v-toolbar-side-icon>
-      </span> -->
+      <span class="hidden-sm-and-up">
+        <v-app-bar-nav-icon @click="sidebar = !sidebar"> </v-app-bar-nav-icon>
+      </span>
 
       <v-toolbar-title>
         {{ appTitle }}
@@ -38,9 +44,9 @@
       </v-toolbar-items>
     </v-toolbar>
 
-    <v-content>
+    <v-main>
       <router-view></router-view>
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 
