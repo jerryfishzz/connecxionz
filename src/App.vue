@@ -37,10 +37,8 @@
           <v-icon left color="darken-2">{{ item.icon }}</v-icon>
           {{ item.title }}
         </v-btn>
-        <v-btn text>
-          <v-icon left color="darken-2">mdi-login</v-icon>
-          Login
-        </v-btn>
+
+        <LoginPrompt />
       </v-toolbar-items>
     </v-toolbar>
 
@@ -52,6 +50,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import LoginPrompt from './components/LoginPrompt.vue'
 
 export default Vue.extend({
   name: 'App',
@@ -64,5 +63,6 @@ export default Vue.extend({
       { title: 'Map', path: '/about', icon: 'mdi-map' },
     ],
   }),
+  components: { LoginPrompt },
 })
 </script>
