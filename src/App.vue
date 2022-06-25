@@ -31,6 +31,10 @@
           <v-icon left color="darken-2">{{ item.icon }}</v-icon>
           {{ item.title }}
         </v-btn>
+        <v-btn text>
+          <v-icon left color="darken-2">mdi-login</v-icon>
+          Login
+        </v-btn>
       </v-toolbar-items>
     </v-toolbar>
 
@@ -51,8 +55,7 @@ export default Vue.extend({
     sidebar: false,
     menuItems: [
       { title: 'Home', path: '/', icon: 'mdi-home' },
-      { title: 'Map', path: '/map', icon: 'mdi-map' },
-      { title: 'Login', path: '/about', icon: 'mdi-login' },
+      { title: 'Map', path: '/about', icon: 'mdi-map' },
     ],
   }),
 })
