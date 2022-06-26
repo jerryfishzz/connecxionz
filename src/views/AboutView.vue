@@ -40,9 +40,7 @@
 import Vue from 'vue'
 import { DragBox } from 'ol/interaction'
 import { platformModifierKeyOnly } from 'ol/events/condition'
-// eslint-disable-next-line
 import * as olExt from 'vuelayers/dist/ol-ext'
-// import { writeGeoJsonFeature } from 'vuelayers/dist/ol-ext'
 
 export default Vue.extend({
   name: 'AboutView',
@@ -50,7 +48,7 @@ export default Vue.extend({
   data() {
     return {
       center: [0, 0],
-      zoom: 2,
+      zoom: 4,
       features: [
         {
           type: 'Feature',
