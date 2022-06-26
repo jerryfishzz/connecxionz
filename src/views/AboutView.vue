@@ -1,107 +1,57 @@
 <template>
   <div id="map">
-    <div class="about">
-      <h1>This is an about page</h1>
-    </div>
-
-    <div>Selected: {{ selectedFeatures.map(f => f.id) }}</div>
     <vl-map
       :load-tiles-while-animating="true"
       :load-tiles-while-interacting="true"
-      @created="mapCreated"
+      data-projection="EPSG:4326"
     >
-      <vl-view :center.sync="center" :zoom.sync="zoom" />
+      <vl-view
+        :zoom.sync="zoom"
+        :center.sync="center"
+        :rotation.sync="rotation"
+      ></vl-view>
 
-      <vl-layer-tile id="osm">
-        <vl-source-osm />
+      <vl-layer-tile>
+        <vl-source-osm></vl-source-osm>
       </vl-layer-tile>
 
       <vl-layer-vector>
-        <vl-source-vector ref="vectorSource">
-          <vl-feature
-            v-for="feature in features"
-            :key="feature.id"
-            :id="feature.id"
-          >
-            <vl-geom-point :coordinates="feature.geometry.coordinates" />
-          </vl-feature>
-        </vl-source-vector>
-      </vl-layer-vector>
+        <vl-source-vector :features="features"></vl-source-vector>
 
-      <vl-interaction-select
-        ref="selectInteraction"
-        :features.sync="selectedFeatures"
-      />
+        <vl-style-box>
+          <vl-style-icon
+            src="../assets/marker.png"
+            :anchor="[0.5, 1]"
+            :scale="0.3"
+          ></vl-style-icon>
+        </vl-style-box>
+      </vl-layer-vector>
     </vl-map>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import { DragBox } from 'ol/interaction'
-import { platformModifierKeyOnly } from 'ol/events/condition'
-import * as olExt from 'vuelayers/dist/ol-ext'
 
 export default Vue.extend({
   name: 'AboutView',
 
   data() {
     return {
-      center: [0, 0],
-      zoom: 4,
+      zoom: 16.5,
+      center: [171.4029548246267, -43.705607663038],
+      rotation: 0,
       features: [
         {
           type: 'Feature',
-          id: 'one',
           geometry: {
             type: 'Point',
-            coordinates: [0, 0],
+            coordinates: [171.4029548246267, -43.705607663038],
           },
-        },
-        {
-          type: 'Feature',
-          id: 'two',
-          geometry: {
-            type: 'Point',
-            coordinates: [20e5, 20e5],
-          },
-        },
-        {
-          type: 'Feature',
-          id: 'three',
-          geometry: {
-            type: 'Point',
-            coordinates: [-20e5, -20e5],
-          },
+          properties: {},
         },
       ],
-      selectedFeatures: [],
     }
-  },
-  methods: {
-    mapCreated(map: any) {
-      // a DragBox interaction used to select features by drawing boxes
-      const dragBox = new DragBox({
-        condition: platformModifierKeyOnly,
-        onBoxEnd: () => {
-          // features that intersect the box are selected
-          const extent = dragBox.getGeometry().getExtent()
-          const source = this.$refs.vectorSource.$source
-
-          source.forEachFeatureIntersectingExtent(extent, feature => {
-            feature = olExt.writeGeoJsonFeature(feature)
-            this.selectedFeatures.push(feature)
-          })
-        },
-      })
-
-      map.$map.addInteraction(dragBox)
-
-      // clear selection when drawing a new box and when clicking on the map
-      dragBox.on('boxstart', () => {
-        this.selectedFeatures = []
-      })
-    },
   },
 })
 </script>
