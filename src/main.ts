@@ -3,8 +3,12 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
+import VueLayers from 'vuelayers'
+import 'vuelayers/dist/vuelayers.css'
 
 Vue.config.productionTip = false
+
+Vue.use(VueLayers)
 
 // Register a global custom directive called `v-blur` that prevents focus
 // For example, to use this directive on buttons opening dialog // since they should not keep focusing after the dialog disappears
