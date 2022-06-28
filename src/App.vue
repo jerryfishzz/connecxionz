@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-navigation-drawer v-model="sidebar" absolute>
+    <v-navigation-drawer v-model="sidebar" app>
       <v-list>
         <v-list-item
           v-for="item in menuItems"
@@ -18,7 +18,7 @@
     </v-navigation-drawer>
 
     <!--  class shrink is to control the bar height steady -->
-    <v-toolbar class="shrink">
+    <v-app-bar class="shrink" app>
       <span class="hidden-sm-and-up">
         <v-app-bar-nav-icon @click="sidebar = !sidebar"> </v-app-bar-nav-icon>
       </span>
@@ -36,7 +36,7 @@
 
         <LoginPrompt />
       </v-toolbar-items>
-    </v-toolbar>
+    </v-app-bar>
 
     <v-main>
       <router-view></router-view>
