@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-navigation-drawer v-model="sidebar" app>
+    <v-navigation-drawer v-model="sidebar" absolute :style="{ zIndex: 6 }">
       <v-list>
         <v-list-item
           v-for="item in menuItems"
