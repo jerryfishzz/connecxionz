@@ -1,12 +1,12 @@
 <template>
   <v-dialog v-model="dialog" width="500">
     <template v-slot:activator="{ on, attrs }">
-      <v-btn text v-bind="attrs" v-on="on" v-blur v-if="!isDrawer">
+      <v-btn text v-bind="attrs" v-on="on" v-blur v-if="!drawer">
         <v-icon left color="darken-2">mdi-login</v-icon>
         Login
       </v-btn>
 
-      <v-list-item ripple v-bind="attrs" v-on="on" v-blur v-if="isDrawer">
+      <v-list-item ripple v-bind="attrs" v-on="on" v-blur v-if="drawer">
         <v-list-item-icon>
           <v-icon>mdi-login</v-icon>
         </v-list-item-icon>
@@ -23,10 +23,14 @@
         <v-container>
           <v-row>
             <v-col cols="12">
-              <v-text-field label="Username"></v-text-field>
+              <v-text-field label="Username" :value="username"></v-text-field>
             </v-col>
             <v-col cols="12">
-              <v-text-field label="Password" type="password"></v-text-field>
+              <v-text-field
+                label="Password"
+                type="password"
+                :value="password"
+              ></v-text-field>
             </v-col>
           </v-row>
         </v-container>
@@ -41,17 +45,29 @@
 </template>
 
 <script lang="ts">
-export default {
+import Vue from 'vue'
+
+export default Vue.extend({
   name: 'LoginPrompt',
   data() {
     return {
       dialog: false,
+      username: '',
+      password: '',
     }
   },
   props: {
-    isDrawer: {
+    drawer: {
       type: Boolean,
     },
   },
-}
+  watch: {
+    dialog: function () {
+      if (!this.dialog) {
+        this.username = ''
+        this.password = ''
+      }
+    },
+  },
+})
 </script>

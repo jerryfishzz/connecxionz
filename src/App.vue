@@ -13,7 +13,7 @@
           <v-list-item-content>{{ item.title }}</v-list-item-content>
         </v-list-item>
 
-        <LoginPrompt :isDrawer="true" />
+        <LoginPrompt :drawer="true" />
       </v-list>
     </v-navigation-drawer>
 
