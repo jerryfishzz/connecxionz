@@ -23,7 +23,7 @@
       </span>
 
       <v-toolbar-title>
-        {{ appTitle.toUpperCase() }}
+        {{ appTitle }}
       </v-toolbar-title>
 
       <v-spacer></v-spacer>
