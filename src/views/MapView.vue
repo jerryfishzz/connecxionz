@@ -58,9 +58,8 @@ export default Vue.extend({
 })
 </script>
 
-<style>
+<style scoped>
 #map {
-  text-align: center;
   width: 100%;
   height: 100%;
 }
