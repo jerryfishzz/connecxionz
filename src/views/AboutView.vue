@@ -7,7 +7,7 @@
     >
       <vl-view
         :zoom.sync="zoom"
-        :center.sync="center"
+        :center="center"
         :rotation.sync="rotation"
       ></vl-view>
 
@@ -39,19 +39,21 @@ export default Vue.extend({
   data() {
     return {
       zoom: 16.5,
-      center: [171.4029548246267, -43.705607663038],
       rotation: 0,
-      features: [
-        {
-          type: 'Feature',
-          geometry: {
-            type: 'Point',
-            coordinates: [171.4029548246267, -43.705607663038],
-          },
-          properties: {},
-        },
-      ],
+      features: this.$store.state.map,
     }
+  },
+
+  computed: {
+    center: {
+      get() {
+        const center = this.$store.getters.getCenter?.geometry.coordinates
+        return center ? center : [0, 0]
+      },
+      set(value: number[]) {
+        console.log(value)
+      }
+    },
   },
 })
 </script>
