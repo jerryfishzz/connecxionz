@@ -17,14 +17,13 @@
       </v-list>
     </v-navigation-drawer>
 
-    <!--  class shrink is to control the bar height steady -->
-    <v-app-bar class="shrink" app>
+    <v-app-bar app>
       <span class="hidden-sm-and-up">
         <v-app-bar-nav-icon @click="sidebar = !sidebar"> </v-app-bar-nav-icon>
       </span>
 
       <v-toolbar-title>
-        {{ appTitle }}
+        {{ appTitle.toUpperCase() }}
       </v-toolbar-title>
 
       <v-spacer></v-spacer>
@@ -56,7 +55,7 @@ export default Vue.extend({
     sidebar: false,
     menuItems: [
       { title: 'Home', path: '/', icon: 'mdi-home' },
-      { title: 'Map', path: '/about', icon: 'mdi-map' },
+      { title: 'Map', path: '/map', icon: 'mdi-map' },
     ],
   }),
   components: { LoginPrompt },

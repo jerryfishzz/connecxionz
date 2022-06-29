@@ -34,7 +34,7 @@
 import Vue from 'vue'
 
 export default Vue.extend({
-  name: 'AboutView',
+  name: 'MapView',
 
   data() {
     return {
@@ -52,7 +52,7 @@ export default Vue.extend({
       },
       set(value: number[]) {
         console.log(value)
-      }
+      },
     },
   },
 })
