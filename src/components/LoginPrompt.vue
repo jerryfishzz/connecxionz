@@ -23,13 +23,13 @@
         <v-container>
           <v-row>
             <v-col cols="12">
-              <v-text-field label="Username" :value="username"></v-text-field>
+              <v-text-field label="Username" v-model="username"></v-text-field>
             </v-col>
             <v-col cols="12">
               <v-text-field
                 label="Password"
                 type="password"
-                :value="password"
+                v-model="password"
               ></v-text-field>
             </v-col>
           </v-row>
@@ -47,8 +47,7 @@
 <script lang="ts">
 import Vue from 'vue'
 
-export default Vue.extend({
-  name: 'LoginPrompt',
+export default Vue.component('login-prompt', {
   data() {
     return {
       dialog: false,
@@ -57,9 +56,7 @@ export default Vue.extend({
     }
   },
   props: {
-    drawer: {
-      type: Boolean,
-    },
+    drawer: Boolean,
   },
   watch: {
     dialog: function () {
